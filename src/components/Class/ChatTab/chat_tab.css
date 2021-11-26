@@ -1,0 +1,21 @@
+.chatbox_area{
+	display: flex;
+	flex-wrap: wrap;
+	position: fixed;
+  	bottom: 0px;
+  	margin:20px;
+  	width: 100%;
+}
+
+#chatbox{
+  background-color: white;
+  width:70%;
+  padding:15px;
+  outline: 1px solid grey;
+  border-radius: 5px;
+  margin: 0px 10px;
+}
+
+.send_button{
+	height: 3rem;
+}

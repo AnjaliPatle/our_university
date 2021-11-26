@@ -1,0 +1,63 @@
+.material_tab{
+
+}
+
+.material_element{
+	width: 60%;
+	margin:2.5% 20%;
+	padding:25px;
+	box-shadow: 3px 3px 6px 2px rgba(0,0,0,0.2);
+	border: 1px solid rgba(0,0,0,0.1);
+	border-radius: 15px;
+}
+
+.material_element_header{
+	display: flex;
+	justify-content: space-between;
+}
+
+
+.material_element_poster{
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	width: 25%;
+}
+
+.material_element_poster_img{
+	height: 45px;
+	width: 45px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin:0px 25px 0px 10px;
+}
+
+.material_element_poster_name{
+
+}
+
+.material_element_name{
+	font-weight:800px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	text-align: center;
+}
+
+.material_element_time{
+	display: flex;
+	align-items: center;
+	width: 25%;
+	justify-content: right;
+}
+
+.material_element_description{
+	padding:15px;
+}
+
+.material_element_file{
+	height: 200px;
+	width:80%;
+	margin:20px 10%;
+	border: 2px solid black;
+}
