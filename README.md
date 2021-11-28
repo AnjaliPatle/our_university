@@ -1,70 +1,64 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Our University 
+<b>Submission By:
+Anjali Patle for Microsoft Engage'21</b>
 
-## Available Scripts
+<p align="center">
+    <img src="https://github.com/AnjaliPatle/our_university/blob/main/logo_long.png" alt="Logo" width="500">
+  </a>
 
-In the project directory, you can run:
+Our University in a single platform solution which aims at solving multiple needs of students and faculties on the same platform.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Tired of juggling multiple apps and keeping track of your class information over different platforms?
+Our university provides an all-rounded solution to manage all the information that you need for a class under a single platform, with it's four tabs:
+<br/>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+ <h2><p align="center">Chat | Announcement | Schedule | Materials </p></h2>
+ 
 
-### `npm test`
+Our University provides the following features for a class:
+* <b> Chat online with fellow classmates and faculties for sharing data and interaction.
+* <b> Faculties can create announcements for important information and reminders.
+* <b> Students can view the calendar for the class and keep track of scheduled events.
+* <b> Faculties can add event in the schedule.
+* <b> Faculties can share relevant study materials with students under the material section.
+   
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technology Stack
 
-### `npm run build`
+- Frontend
+  - React JS
+  
+- Backend and Database
+  - FireBase
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Instructions to Install and Setup:
+- Install npm 
+- Download the Zip or clone the repository using command : -
+``` bash
+git clone https://github.com/AnjaliPatle/our_university.git
+```
+- Go inside the root folder of the directory 
+- run ```npm install``` to install all the dependencies.
+- run ```npm start``` to launch the app at ```localhost:3000```
+- Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Screenshots
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  <img src="Screenshot (522).png" width="500">
+  <br><br>Chat:<br>
+<img src="Screenshot (518).png" width="500">
+ <br><br> Announcements:<br>
+  <img src="Screenshot (519).png" width="500">
+  <br><br>Schedule:<br>
+  <img src="Screenshot (520).png" width="500">
+  <br><br>Materials:<br>
+  <img src="Screenshot (521).png" width="500">
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
