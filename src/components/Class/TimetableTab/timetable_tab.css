@@ -1,0 +1,51 @@
+.timetable_tab{
+	display: flex;
+}
+
+.timetable_details{
+	width:40%;
+	background: rgba(0,0,0,0.075);
+	min-height: 50vh;
+	overflow-y: auto;
+	text-align: center;
+	border:1px solid rgba(0,0,0,0.2);
+}
+
+.no_date_text{
+	font-size:1.8rem;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.timetable_event_details{
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+.timetable_date{
+	font-weight: 700;
+	font-size: 1.5rem;
+	padding:10px;
+	width: 100%;
+	height: 60px;
+	background: white;
+	color:#ee6e73;
+	box-shadow: 2px 2px 15px 2px rgba(0,0,0,0.1);
+}
+
+.add_event_button{
+	align-self: flex-end;
+}
+
+.date-label{
+	font-size:1.2rem;
+	font-weight: 700;
+}
+.event-details-tab{
+	width:60%;
+	margin:5% 20%;
+}
+
+.fc-event-time{
+   display : none !important;
+}

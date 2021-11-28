@@ -2,10 +2,11 @@ import {React, useState} from 'react'
 import ChatTab from './ChatTab/ChatTab'
 import MaterialTab from './MaterialTab/MaterialTab'
 import AnnouncementTab from './AnnouncementTab/AnnouncementTab'
+import TimetableTab from './TimetableTab/TimetableTab'
 import '../../materialize/css/materialize.css';
 import './class.css';
 
-function ClassComponent() {
+function ClassComponent(props) {
 
   const [tabName,setTabName]=useState('chat');
 
@@ -16,7 +17,7 @@ function ClassComponent() {
   }
 
   return (
-    <div style={{marginTop:'50px'}}>
+    <div className="class_tab">
         <div className="tab_nav">
               <div className="tab_name"  style={generateStyle('chat')} onClick={()=>{setTabName('chat')}}>
                   Chat
@@ -31,11 +32,11 @@ function ClassComponent() {
                   Study Materials
               </div>
         </div>
-
-      {tabName=='chat'? <div><ChatTab/></div> : null}
-      {tabName=='announcements'? <div><AnnouncementTab/></div> : null}
-      {tabName=='schedule'? <div>Schedule</div> : null}
-      {tabName=='studyMaterials'? <MaterialTab/>: null}
+        
+          {tabName=='chat'?<ChatTab auth={props.auth} user={props.user}/>: null}
+          {tabName=='announcements'? <div><AnnouncementTab auth={props.auth} user={props.user}/></div> : null}
+          {tabName=='schedule'? <div><TimetableTab auth={props.auth} user={props.user}/></div> : null}
+          {tabName=='studyMaterials'? <MaterialTab auth={props.auth} user={props.user}/>: null}
 
     </div>
   );

@@ -5,19 +5,10 @@ import Typography from '@mui/material/Typography';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import {addModalStyle, primaryHeading, accentBackground, textFields} from '../../../assets/styles.js';
 import '../class.css';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+
 
 function AddAnnouncementModal(props) {
 
@@ -28,6 +19,8 @@ function AddAnnouncementModal(props) {
   
  
  const addAnnouncement=()=>{
+    setAnnouncementTitle('');
+    setAnnouncementDescription('');
     props.saveAnnouncement({
       title: announcementTitle,
       description: announcementDescription
@@ -41,21 +34,25 @@ function AddAnnouncementModal(props) {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
        >
-        <Box sx={style}>
+        <Box sx={addModalStyle}>
           <Typography 
               id="modal-modal-title" 
               variant="h5" 
               component="h2"
+              style={primaryHeading}
             >
             Add Announcement
           </Typography>
           <div>
+            Title:
             <OutlinedInput
               label="Title"
               value={announcementTitle}
               onChange={(event)=>setAnnouncementTitle(event.target.value)} 
               fullWidth 
+              style={textFields}
             />
+            Description:
             <OutlinedInput
               label="Descripton"
               multiline
@@ -63,8 +60,10 @@ function AddAnnouncementModal(props) {
               onChange={(event)=>setAnnouncementDescription(event.target.value)}
               maxRows={4}
               fullWidth 
+              style={textFields}
             />
-            <Button variant="contained" onClick={addAnnouncement}>Add Announcement</Button>
+            <Button variant="contained" className="add-material-button"
+              style={accentBackground} onClick={addAnnouncement}>Add Announcement</Button>
           </div>
         </Box>
       </Modal>

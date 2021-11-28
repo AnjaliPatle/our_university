@@ -42,6 +42,8 @@
 	flex-wrap: wrap;
 	align-items: center;
 	text-align: center;
+	font-weight:800;
+	font-size:1.2rem;
 }
 
 .material_element_time{
@@ -57,7 +59,15 @@
 
 .material_element_file{
 	height: 200px;
-	width:80%;
-	margin:20px 10%;
-	border: 2px solid black;
+	width:95%;
+	margin:20px 2.5%;
+	display: flex;
+}
+
+.add-material-modal{
+	text-align: left;
+}
+
+.material-input{
+	margin: 10px 0;
 }

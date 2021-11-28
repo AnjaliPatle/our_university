@@ -1,10 +1,51 @@
+.chat_tab{
+  background: rgba(0,0,0,0.1);
+  min-height: 93%;
+  max-height: 93%;
+  width:70%;
+  margin: 0px 15%;
+  padding:10px;
+}
+
+.message_section{
+  max-height: 67vh;
+  min-height: 67vh;
+  overflow-y: auto;
+}
+
 .chatbox_area{
 	display: flex;
 	flex-wrap: wrap;
-	position: fixed;
-  	bottom: 0px;
-  	margin:20px;
-  	width: 100%;
+  justify-content: center;
+  width: 100%;
+  margin:10px;
+}
+
+.message{
+  min-width: 30%;
+  max-width: 60%;
+  padding:10px;
+  margin:10px 0px;
+  border:1px solid rgba(0,0,0,0.2);
+}
+
+.sent_message{
+  background: #ee6e73;
+  color:white;
+  margin-left: auto;
+  margin-right:0; 
+  border-top-left-radius: 10px;
+  border-bottom-left-radius:10px; 
+}
+
+.recieved_message{
+  background: white;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius:10px; 
+}
+
+.message_sender{
+  font-weight: 700;
 }
 
 #chatbox{
@@ -14,6 +55,7 @@
   outline: 1px solid grey;
   border-radius: 5px;
   margin: 0px 10px;
+  overflow-y: auto;
 }
 
 .send_button{

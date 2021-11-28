@@ -8,7 +8,10 @@ import Button from '@mui/material/Button';
 
 function MessageBox(props) {
 	return(
-		<div className="message_box">
+		<div className={props.type=='sent'?"sent_message message" :"recieved_message message"}>
+			<div className="message_sender">
+				{props.sender? props.sender : ''}
+			</div>
 			{props.message}
 		</div>
 	);

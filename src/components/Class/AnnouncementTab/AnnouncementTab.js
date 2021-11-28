@@ -1,58 +1,103 @@
-import {React, useState} from 'react'
+import {React, useState, useEffect} from 'react'
 import AnnouncementElement from './AnnouncementElement'
 import Fab from '@mui/material/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import addButtonStyle from '../../../assets/styles.js';
+import {addButtonStyle} from '../../../assets/styles.js';
 import './announcement_tab.css';
 import '../class.css';
 import '../../../materialize/css/materialize.css';
 import AddAnnouncementModal from './AddAnnouncementModal';
-import FireBase from "../../../firebase/firebase";
+import firebase from "firebase";
 
 
-const sampleAnnouncementList=[
-	{
-		title:"Announcement 1",
-		description:"This is Announcement 1 sample",
-		posterName:"Anjali Patle"
-	},
-	{
-		title:"Announcement 2",
-		description:"This is Announcement 2 sample",
-		posterName:"Anjali Patle"
-	}
-]
-function AnnouncementTab() {
-	const [announcementList,setAnnouncementList]=useState(sampleAnnouncementList);
+
+function AnnouncementTab(props) {
+	const [loading, setLoading]= useState(false);
+	const [announcementList,setAnnouncementList]=useState([]);
 	const [openAddAnnouncementModal, setOpenAddAnnouncement]= useState(false);
 
-	const saveAnnouncement = (newAnnouncement) => {
-	    // const saveToFirebase = FireBase.firestore();
-	    // saveToFirebase.collection("todos").add({
-	    //     title: newAnnouncement.title,
-	    //     descripton: newAnnouncement.descripton
-	    // });
-	    setAnnouncementList([...announcementList, newAnnouncement]);
-	    setOpenAddAnnouncement(false);
-	  };
-	  console.log(announcementList);
+	const getAnnouncements = () =>{
+		setLoading(true);
+		const db = firebase.firestore();
+		db.collection("Classes/yRg2rNdoYoX3YBzbDH80/announcements").orderBy('createdAt','desc').get().then((querySnapshot) => {
+			let announcementListFromDB=[];
+		    querySnapshot.forEach((doc) => {
+		        // doc.data() is never undefined for query doc snapshots
+		        announcementListFromDB.push(doc.data());
+		        console.log(doc.id, " => ", doc.data());
+		    });
+		    setAnnouncementList(announcementListFromDB);
+		    setLoading(false);
+		}).catch((error) => {
+			setLoading(false);
+		    console.log("Error getting document:", error);
+		});		
+	}
 
+	 useEffect(() => {
+	    getAnnouncements();
+	  },[]);
+
+	const saveAnnouncement = (newAnnouncement) => {
+		  setLoading(true);
+	      const db = firebase.firestore();
+
+
+            db.collection("Classes/yRg2rNdoYoX3YBzbDH80/announcements").doc().set({
+			    title: newAnnouncement.title,
+	       		description: newAnnouncement.description,
+	       		createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+	       		photoUrl: props.auth.currentUser.photoURL,
+	       		name:props.auth.currentUser.displayName,
+			})
+			.then(() => {
+			    console.log("Document successfully written!");
+			    setLoading(false);
+			})
+			.catch((error) => {
+				setLoading(false);
+			    console.error("Error writing document: ", error);
+			});
+		const newAnnouncementList=[...announcementList];
+		newAnnouncementList.unshift(newAnnouncement); 
+	    setAnnouncementList(newAnnouncementList);
+	    setOpenAddAnnouncement(false);
+	 };
+
+	 console.log(openAddAnnouncementModal)
   return (
-    <div className="announcement_tab">
-    	<Fab color="primary" aria-label="add" style={addButtonStyle}>
-	       <AddIcon onClick={()=>setOpenAddAnnouncement(true)}/>
-	    </Fab>
-      {
-      	announcementList.map((item)=>
-      		 <AnnouncementElement data={item}/>
-      	)
-      }
-      <hr className="end_hr"/>
-      <AddAnnouncementModal 
-      	open={openAddAnnouncementModal} 
-      	handleAddAnnouncementModal={setOpenAddAnnouncement}
-      	saveAnnouncement={saveAnnouncement}
-      />
+  	<div>
+  		{loading?
+  			<div>loading...</div>
+  			:
+  			<div>
+	  			<Fab 
+	  				color="primary" 
+	  				aria-label="add" 
+	  				style={addButtonStyle} 
+	  				onClick={()=>setOpenAddAnnouncement(true)}
+	  			>
+					<AddIcon/>
+				</Fab>
+				<AddAnnouncementModal 
+			      	open={openAddAnnouncementModal} 
+			      	handleAddAnnouncementModal={setOpenAddAnnouncement}
+			      	saveAnnouncement={saveAnnouncement}
+			      	color="primary"
+			      />
+			</div>
+		}
+		{announcementList.length===0? "No Announcements Yet":
+			    <div className="announcement_tab">
+			      {
+			      	announcementList.map((item)=>
+			      		 <AnnouncementElement data={item}/>
+			      	)
+			      }
+			      <hr className="end_hr"/>
+			      
+			    </div>
+		}
     </div>
   );
 }
