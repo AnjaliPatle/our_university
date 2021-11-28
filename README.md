@@ -57,7 +57,7 @@ git clone https://github.com/AnjaliPatle/our_university.git
   <br><br>Schedule Tab:<br>
   <img src="Screenshots/Screenshot (520).png" width="500">
   <br><br>Materials Tab:<br>
-  <img src="Screenshot (521).png" width="500">
+  <img src="Screenshots/Screenshot (521).png" width="500">
 
 
 
