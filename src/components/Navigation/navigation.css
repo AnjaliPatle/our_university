@@ -8,3 +8,17 @@
 	width: auto;
 	margin: 0px 10px;
 }
+
+.nav-wrapper{
+	display: flex;
+	justify-content: space-between;
+}
+
+.signout-button{
+	border:1px solid black;
+	background: #024390;
+	color:white;
+	margin:10px;
+	border-radius:5px;
+	padding:5px;
+}

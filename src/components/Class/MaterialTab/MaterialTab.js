@@ -3,28 +3,12 @@ import MaterialElement from './MaterialElement'
 import Fab from '@mui/material/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import '../../../materialize/css/materialize.css';
-import img from './sample_image.png'
-import doc from './sample_document.pdf'
 import {addButtonStyle} from '../../../assets/styles'
 import AddMaterialModal from './AddMaterialModal';
 import firebase from "firebase";
 
 
 
-const sampleMaterialList=[
-	{
-		title:"Material 1",
-		description:"This is material 1 sample",
-		url:img,
-		posterName:"Anjali Patle"
-	},
-	{
-		title:"Material 2",
-		description:"This is material 2 sample",
-		url:doc,
-		posterName:"Anjali Patle"
-	}
-]
 function MaterialTab(props) {
 	const [loading, setLoading]= useState(false);
 	const [materialList,setMaterialList]=useState([]);
@@ -33,7 +17,7 @@ function MaterialTab(props) {
 	const getMaterials = () =>{
 		setLoading(true);
 		const db = firebase.firestore();
-		db.collection("Classes/yRg2rNdoYoX3YBzbDH80/materials")
+		db.collection("Classes/"+props.classDetails.classId+"/materials")
 			.orderBy('createdAt','desc').get().then((querySnapshot) => {
 				let materialListFromDB=[];
 			    querySnapshot.forEach((doc) => {
@@ -63,7 +47,7 @@ function MaterialTab(props) {
 		storageRef.child(newMaterial.file.name).put(newMaterial.file)
 		.then((snapshot) => {
 			storageRef.child(newMaterial.file.name).getDownloadURL().then((url) => {
-				db.collection("Classes/yRg2rNdoYoX3YBzbDH80/materials").doc().set({
+				db.collection("Classes/"+props.classDetails.classId+"/materials").doc().set({
 				    name:newMaterial.title,
 				    description: newMaterial.description,
 				    url: url,
@@ -103,7 +87,8 @@ function MaterialTab(props) {
   	<div>
   		{loading?
   			<div>loading...</div>
-  			:<div>
+  			:props.userType=='faculty'?
+  				<div>
 	  			   <Fab color="primary" aria-label="add" style={addButtonStyle}>
 				      <AddIcon onClick={()=>setOpenAddMaterial(true)}/>
 				  </Fab>
@@ -114,6 +99,7 @@ function MaterialTab(props) {
 			      	color="primary"
 			      />
 		      </div>
+		    :null
 		}
   		{materialList.length===0? 
   			"No Materials Added Yet"

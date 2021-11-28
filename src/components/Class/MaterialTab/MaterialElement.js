@@ -3,8 +3,6 @@ import './materialTab.css'
 import '../../../materialize/css/materialize.css';
 import ViewMaterialModal from './ViewMaterialModal';
 import LaunchIcon from '@material-ui/icons/Launch';
-import img from './sample_image.png'
-import doc from './sample_document.pdf'
 
 
 

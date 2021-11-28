@@ -4,9 +4,19 @@
  import {buttonStyle} from '../../assets/styles.js';
  import logo from '../../assets/logo_long.png';
  import landing_img from '../../assets/landing_img.png';
+ import firebase from 'firebase';
 
  
-function Landing() {
+function Landing(props) {
+
+  const handleSignInButton = (type) =>{
+    props.setLoginType(type);
+    signInWithGoogle();
+  }
+  const signInWithGoogle = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    props.auth.signInWithPopup(provider);
+  }
   return (
     <div className="landing">
       <div className="landing-second-section">
@@ -22,14 +32,20 @@ function Landing() {
       	</div>
       	
       	<div className="landing-login">
-      		<Button variant="contained" style={buttonStyle}>
-      			SIGNUP OR LOGIN AS STUDENT
+      		<Button variant="contained" 
+            style={buttonStyle}
+            onClick={()=>handleSignInButton('student')}
+          >
+      			SIGNIN AS STUDENT WITH GOOGLE
       		</Button>
       		<br/>
       		OR
       		<br/>
-      		<Button variant="contained" style={buttonStyle}>
-      			SIGNUP OR LOGIN AS FACULTY
+      		<Button variant="contained" 
+            style={buttonStyle}
+            onClick={()=>handleSignInButton('faculty')}
+          >
+      			SIGNUP AS FACULTY WITH GOOGLE
       		</Button>
       	</div>
       </div>

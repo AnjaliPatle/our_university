@@ -1,9 +1,9 @@
-
+import '../Navigation/navigation.css'
 
 
 function Signout(props) {
   return props.auth && props.auth.currentUser && (
-    <button className="sign-out" onClick={() => props.auth.signOut()}>Sign Out</button>
+    <button className="signout-button" onClick={() => props.auth.signOut()}>Sign Out</button>
   )
 }
 

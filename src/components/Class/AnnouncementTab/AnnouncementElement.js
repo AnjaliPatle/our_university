@@ -1,8 +1,6 @@
 import {React, useState} from 'react'
 import './announcement_tab.css'
 import '../../../materialize/css/materialize.css';
-import img from '../MaterialTab/sample_image.png'
-import AnnouncementOptions from './AnnouncementOptions'
 
 
 
@@ -29,7 +27,6 @@ function AnnouncementElement(props) {
                 <div className="announcement_element_description"> {props.data.description}</div>
             </div>
         </div>
-        <AnnouncementOptions/>
     </div>
   );
 }

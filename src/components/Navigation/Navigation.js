@@ -11,7 +11,7 @@ function Navigation(props) {
         <nav style={{background:'white'}}>
           <div className="nav-wrapper">
             <img src={logo} className="logo_img"/>
-              <div style={{background:'red'}}><Signout auth={props.auth}/></div>
+              <div ><Signout auth={props.auth}/></div>
           </div>
         </nav>
       </div>

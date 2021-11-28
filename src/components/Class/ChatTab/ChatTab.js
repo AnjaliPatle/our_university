@@ -11,10 +11,9 @@ import firebase from "firebase";
 function ChatTab(props) {
 
     const db = firebase.firestore();
-	const messagesRef = db.collection("Classes/yRg2rNdoYoX3YBzbDH80/messages");
+	const messagesRef = db.collection("Classes/"+props.classDetails.classId+"/messages");
 	const [messages, setMessages]= useState([])
 	const [formValue, setFormValue] = useState('');
-
 
 	useEffect(() => {
 
@@ -47,10 +46,8 @@ function ChatTab(props) {
 	    return unsubscribe;
   	}, []);
 
-  	console.log(messages)
 
 	const sendMessage = async (e) => {
-		//const { uid, photoURL } = props.auth.currentUser;
 	    e.preventDefault();
 
 	    const {uid, photoURL } = props.auth.currentUser;
@@ -64,7 +61,6 @@ function ChatTab(props) {
 	    })
 
 	    setFormValue('');
-	    //dummy.current.scrollIntoView({ behavior: 'smooth' });
 	}
 
 	return(
@@ -73,7 +69,7 @@ function ChatTab(props) {
 				{
 					messages.map((msg)=>{
 						return <MessageBox 
-									type={msg && msg.uid === props.auth.currentUser.uid ?'sent':'recieved'}
+									type={msg && msg.uid === (props.auth.currentUser?props.auth.currentUser.uid:'') ?'sent':'recieved'}
 									message={msg.text}
 									sender={msg.name}
 								/>

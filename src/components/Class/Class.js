@@ -19,24 +19,68 @@ function ClassComponent(props) {
   return (
     <div className="class_tab">
         <div className="tab_nav">
-              <div className="tab_name"  style={generateStyle('chat')} onClick={()=>{setTabName('chat')}}>
+              <div className="tab_name"  
+                    style={generateStyle('chat')} 
+                    onClick={()=>{setTabName('chat')}}
+              >
                   Chat
               </div>
-              <div className="tab_name" style={generateStyle('announcements')} onClick={()=>{setTabName('announcements')}}>
+              <div className="tab_name" 
+                  style={generateStyle('announcements')} 
+                  onClick={()=>{setTabName('announcements')}}
+              >
                   Announcements
               </div>
-              <div className="tab_name" style={generateStyle('schedule')} onClick={()=>{setTabName('schedule')}}>
+              <div className="tab_name" 
+                    style={generateStyle('schedule')} 
+                    onClick={()=>{setTabName('schedule')}}
+              >
                   Schedule
               </div>
-              <div className="tab_name" style={generateStyle('studyMaterials')} onClick={()=>{setTabName('studyMaterials')}}>
+              <div className="tab_name" 
+                    style={generateStyle('studyMaterials')} 
+                    onClick={()=>{setTabName('studyMaterials')}}
+              >
                   Study Materials
               </div>
         </div>
         
-          {tabName=='chat'?<ChatTab auth={props.auth} user={props.user}/>: null}
-          {tabName=='announcements'? <div><AnnouncementTab auth={props.auth} user={props.user}/></div> : null}
-          {tabName=='schedule'? <div><TimetableTab auth={props.auth} user={props.user}/></div> : null}
-          {tabName=='studyMaterials'? <MaterialTab auth={props.auth} user={props.user}/>: null}
+          {tabName=='chat'?
+              <ChatTab 
+                classDetails={props.classDetails} 
+                auth={props.auth} 
+                user={props.user} 
+                userType={props.userType}
+              />
+              : null
+          }
+          {tabName=='announcements'?
+              <AnnouncementTab 
+                classDetails={props.classDetails}
+                auth={props.auth} 
+                user={props.user} 
+                userType={props.userType}
+              />
+              : null
+          }
+          {tabName=='schedule'? 
+            <div><TimetableTab 
+                classDetails={props.classDetails}
+                auth={props.auth} 
+                user={props.user} 
+                userType={props.userType}
+              /></div> 
+            : null
+          }
+          {tabName=='studyMaterials'?
+             <MaterialTab 
+                classDetails={props.classDetails}
+                auth={props.auth} 
+                user={props.user} 
+                userType={props.userType}
+              />
+            : null
+          }
 
     </div>
   );

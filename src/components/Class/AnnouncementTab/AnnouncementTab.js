@@ -19,19 +19,21 @@ function AnnouncementTab(props) {
 	const getAnnouncements = () =>{
 		setLoading(true);
 		const db = firebase.firestore();
-		db.collection("Classes/yRg2rNdoYoX3YBzbDH80/announcements").orderBy('createdAt','desc').get().then((querySnapshot) => {
-			let announcementListFromDB=[];
-		    querySnapshot.forEach((doc) => {
-		        // doc.data() is never undefined for query doc snapshots
-		        announcementListFromDB.push(doc.data());
-		        console.log(doc.id, " => ", doc.data());
-		    });
-		    setAnnouncementList(announcementListFromDB);
-		    setLoading(false);
-		}).catch((error) => {
-			setLoading(false);
-		    console.log("Error getting document:", error);
-		});		
+		db.collection("Classes/"+props.classDetails.classId+"/announcements")
+			.orderBy('createdAt','desc').get()
+			.then((querySnapshot) => {
+				let announcementListFromDB=[];
+			    querySnapshot.forEach((doc) => {
+			        // doc.data() is never undefined for query doc snapshots
+			        announcementListFromDB.push(doc.data());
+			        console.log(doc.id, " => ", doc.data());
+			    });
+			    setAnnouncementList(announcementListFromDB);
+			    setLoading(false);
+			}).catch((error) => {
+				setLoading(false);
+			    console.log("Error getting document:", error);
+			});		
 	}
 
 	 useEffect(() => {
@@ -43,7 +45,7 @@ function AnnouncementTab(props) {
 	      const db = firebase.firestore();
 
 
-            db.collection("Classes/yRg2rNdoYoX3YBzbDH80/announcements").doc().set({
+            db.collection("Classes/"+props.classDetails.classId+"/announcements").doc().set({
 			    title: newAnnouncement.title,
 	       		description: newAnnouncement.description,
 	       		createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -64,12 +66,12 @@ function AnnouncementTab(props) {
 	    setOpenAddAnnouncement(false);
 	 };
 
-	 console.log(openAddAnnouncementModal)
   return (
   	<div>
   		{loading?
   			<div>loading...</div>
   			:
+  			props.userType=='faculty'?
   			<div>
 	  			<Fab 
 	  				color="primary" 
@@ -86,6 +88,7 @@ function AnnouncementTab(props) {
 			      	color="primary"
 			      />
 			</div>
+			:null
 		}
 		{announcementList.length===0? "No Announcements Yet":
 			    <div className="announcement_tab">

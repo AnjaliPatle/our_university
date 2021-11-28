@@ -9,7 +9,7 @@ import './timetable_tab.css';
 import firebase from "firebase";
 
 
-function TimetableTab() {
+function TimetableTab(props) {
 
    const [loading, setLoading]=useState(false);
    const [displayDate, setDisplayDate]=useState('');
@@ -18,8 +18,8 @@ function TimetableTab() {
 
   const getFormattedDisplayDate = () =>{
     return displayDate!==''?
-              displayDate.getDate()+'/'+(displayDate.getMonth()+1)+'/'+displayDate.getFullYear()
-              :''
+          displayDate.getDate()+'/'+(displayDate.getMonth()+1)+'/'+displayDate.getFullYear()
+          :''
   }
 
   const canAddEvent = () =>{
@@ -27,12 +27,10 @@ function TimetableTab() {
     return displayDate.toISOString().slice(0,10)>=today;
   }
 
-  console.log(eventList)
-
   const getAnnouncements = () =>{
     setLoading(true);
     const db = firebase.firestore();
-    db.collection("Classes/yRg2rNdoYoX3YBzbDH80/events").get().then((querySnapshot) => {
+    db.collection("Classes/"+props.classDetails.classId+"/events").get().then((querySnapshot) => {
       console.log("what")
       let eventListFromDB=[];
         querySnapshot.forEach((doc) => {
@@ -60,7 +58,7 @@ function TimetableTab() {
       setLoading(true);
       const db = firebase.firestore();
 
-      db.collection("Classes/yRg2rNdoYoX3YBzbDH80/events").doc()
+      db.collection("Classes/"+props.classDetails.classId+"/events").doc()
         .set(newEvent)
       .then(() => {
           console.log("Document successfully written!");
@@ -94,7 +92,8 @@ function TimetableTab() {
           }
           allDay="true"
           displayEventTime ="false"
-          height="50vh"
+          height="70vh"
+          style={props.userType=='faculty'?{width:'100%'}:null}
           selectable="true"
           editable="true"
           eventTimeFormat= {{
@@ -107,6 +106,7 @@ function TimetableTab() {
           events={eventList}
         />
       </div>
+      {props.userType=='faculty'?
           <div className="timetable_details">
             {
               displayDate===''?
@@ -120,6 +120,8 @@ function TimetableTab() {
                   </div>
             }
           </div>
+          :null
+      }
     </div>
   );
 }
